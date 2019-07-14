@@ -1,3 +1,6 @@
+; Set coord mode to the entire screen instead of active window
+CoordMode, Mouse , Screen
+
 ; Initialize empty object for monitor information
 Monitors := Array()
 
@@ -18,6 +21,10 @@ if (display < 1) or (display > count) {
 }
 
 monitor := Monitors[display]
+; MouseMove, monitor["left"], monitor["top"], 100
+; WinMove, Task Manager, ,monitor["left"], monitor["top"]
+; WinMove, monitor["left"], monitor["top"]
+WinMove, 0, 0
 Return
 
 ^Esc::

@@ -1,5 +1,5 @@
 ; removes any delay after window command
-SetWinDelay, 0
+SetWinDelay, -1
 ; Set coord mode to the entire screen instead of active window
 CoordMode, Mouse , Screen
 
@@ -31,6 +31,7 @@ Loop {
         WinWait, Task Manager
         WinMove %x%, %y%
         y := y + 1
+        Sleep, .01
     }
 }
 Return

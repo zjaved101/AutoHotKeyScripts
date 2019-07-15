@@ -1,5 +1,5 @@
 ; removes any delay after window command
-SetWinDelay, Delay
+SetWinDelay, 0
 ; Set coord mode to the entire screen instead of active window
 CoordMode, Mouse , Screen
 

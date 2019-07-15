@@ -38,6 +38,6 @@ Return
 ^Esc::
 ExitApp
 
-^r::
+^1::
 Reload
 Return

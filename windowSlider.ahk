@@ -1,5 +1,7 @@
 ; removes any delay after window command
 SetWinDelay, Delay
+; Set coord mode to the entire screen instead of active window
+CoordMode, Mouse , Screen
 
 ; Initialize empty object for monitor information
 Monitors := Array()

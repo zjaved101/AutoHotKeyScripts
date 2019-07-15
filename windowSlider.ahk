@@ -1,3 +1,6 @@
+; removes any delay after window command
+SetWinDelay, Delay
+
 ; Initialize empty object for monitor information
 Monitors := Array()
 
@@ -18,6 +21,16 @@ if (display < 1) or (display > count) {
 }
 
 monitor := Monitors[display]
+
+x := monitor["left"]
+Loop {
+    y := monitor["top"]
+    Loop, % monitor["bottom"] {
+        WinWait, Task Manager
+        WinMove %x%, %y%
+        y := y + 1
+    }
+}
 Return
 
 ^Esc::

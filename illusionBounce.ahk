@@ -1,7 +1,9 @@
 ; BEFORE RUNNING THIS SCRIPT, MAKE SURE TO CREATE A FOLDER CALLED images AT THE SAME LEVEL AS THIS SCRIPT AND PUT PNG IMAGES IN IT
 
-; removes any delay after window command
+; Removes any delay after moving windows
 SetWinDelay, 0
+
+
 
 ; Initialize empty object for monitor information
 Monitors := Array()
@@ -68,8 +70,8 @@ Loop {
             Directions[index]["y"] := Directions[index]["y"] * -1
 
         WinMove, %index%, , X + direction["x"], Y + direction["y"]
-        ; Sleep, 1
     }
+    Sleep, 1
 }
 
 Return

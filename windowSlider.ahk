@@ -1,7 +1,7 @@
+; IF SCRIPT DOES NOT WORK, TRY SETTING AHK TO HAVE ADMIN PRIVELEGES
+
 ; removes any delay after window command
 SetWinDelay, -1
-; Set coord mode to the entire screen instead of active window
-CoordMode, Mouse , Screen
 
 ; Initialize empty object for monitor information
 Monitors := Array()
@@ -14,6 +14,9 @@ Loop, %count% {
     SysGet, workArea, MonitorWorkArea, %A_Index%
     Monitors.push({"left": workAreaLeft, "right": workAreaRight, "top": workAreaTop, "bottom": workAreaBottom})
 }
+
+; WinGetPos, X, Y, Width, Height, Task Manager
+; MsgBox, Task Manager at %X%, %Y%
 
 ^`::
 ; asks for which monitor only if it detects more than one
@@ -34,7 +37,7 @@ Loop {
     y := monitor["top"]
     Loop, % monitor["bottom"] {
         WinWait, Task Manager
-        WinMove %x%, %y%
+        WinMove, Task Manager, , %x%, %y%
         y := y + 1
         Sleep, .01
     }

@@ -16,13 +16,18 @@ Loop, %count% {
 }
 
 ^`::
-InputBox, display, Choose Display, Please choose a display as you have %count% displays:, , 350, 130
-if (display < 1) or (display > count) {
-    msgBox, Bad input: %display%
-    Return
+; asks for which monitor only if it detects more than one
+if (count > 1) {
+    InputBox, display, Choose Display, Please choose a display as you have %count% displays:, , 350, 130
+    if (display < 1) or (display > count) or (display is not Integer) {
+        msgBox, Bad input: %display%
+        Return
+    }
+    monitor := Monitors[display]
 }
-
-monitor := Monitors[display]
+else {
+    monitor := Monitors[1]
+}
 
 x := monitor["left"]
 Loop {
@@ -39,6 +44,6 @@ Return
 ^Esc::
 ExitApp
 
-^1::
+^r::
 Reload
 Return

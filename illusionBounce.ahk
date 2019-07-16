@@ -1,7 +1,7 @@
 ; BEFORE RUNNING THIS SCRIPT, MAKE SURE TO CREATE A FOLDER CALLED images AT THE SAME LEVEL AS THIS SCRIPT AND PUT PNG IMAGES IN IT
 
 ; removes any delay after window command
-SetWinDelay, Delay
+SetWinDelay, -1
 
 ; Initialize empty object for monitor information
 Monitors := Array()
@@ -52,11 +52,29 @@ for index, element in imageList {
     ; Generate random direction for squares
     Random, x, -1, 1
     Random, y, -1, 1
+
+    ; remove any 0 if random selected it
+    if (x == 0) {
+        x = 1
+    }
+    if ( y == 0 ) {
+        y = 1
+    }
     Directions.Push({"x": x, "y": y})
 }
 
-; direction := Directions[1]
-; MsgBox, % direction["x"]
+Loop {
+    for index, direction in Directions {
+        WinGetPos, X, Y, , , %index%
+        if (X <= monitor["left"]) or (X + 100 >= monitor["right"])
+            Directions[index]["x"] := Directions[index]["x"] * -1
+        
+        if (Y <= monitor["top"]) or (Y + 100 >= monitor["bottom"])
+            Directions[index]["y"] := Directions[index]["y"] * -1
+        ; MsgBox, %X%, %Y%
+        WinMove, %index%, , X + direction["x"], Y + direction["y"]
+    }
+}
 
 
 
@@ -68,6 +86,6 @@ Return
 ^Esc::
 ExitApp
 
-^1::
+^r::
 Reload
 Return

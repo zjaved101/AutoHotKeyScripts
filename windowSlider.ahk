@@ -1,7 +1,7 @@
+; IF SCRIPT DOES NOT WORK, TRY SETTING AHK TO HAVE ADMIN PRIVELEGES
+
 ; removes any delay after window command
-SetWinDelay, Delay
-; Set coord mode to the entire screen instead of active window
-CoordMode, Mouse , Screen
+SetWinDelay, -1
 
 ; Initialize empty object for monitor information
 Monitors := Array()
@@ -16,21 +16,27 @@ Loop, %count% {
 }
 
 ^`::
-InputBox, display, Choose Display, Please choose a display as you have %count% displays:, , 350, 130
-if (display < 1) or (display > count) {
-    msgBox, Bad input: %display%
-    Return
+; asks for which monitor only if it detects more than one
+if (count > 1) {
+    InputBox, display, Choose Display, Please choose a display as you have %count% displays:, , 350, 130
+    if (display < 1) or (display > count) or (display is not Integer) {
+        msgBox, Bad input: %display%
+        Return
+    }
+    monitor := Monitors[display]
 }
-
-monitor := Monitors[display]
+else {
+    monitor := Monitors[1]
+}
 
 x := monitor["left"]
 Loop {
     y := monitor["top"]
     Loop, % monitor["bottom"] {
         WinWait, Task Manager
-        WinMove %x%, %y%
+        WinMove, Task Manager, , %x%, %y%
         y := y + 1
+        Sleep, .01
     }
 }
 Return

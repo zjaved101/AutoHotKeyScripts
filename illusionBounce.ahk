@@ -3,8 +3,6 @@
 ; Removes any delay after moving windows
 SetWinDelay, 0
 
-
-
 ; Initialize empty object for monitor information
 Monitors := Array()
 

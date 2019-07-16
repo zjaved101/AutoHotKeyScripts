@@ -77,6 +77,6 @@ Return
 ^Esc::
 ExitApp
 
-^r::
+^+r::
 Reload
 Return

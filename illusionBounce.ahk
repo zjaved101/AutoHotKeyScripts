@@ -1,7 +1,7 @@
 ; BEFORE RUNNING THIS SCRIPT, MAKE SURE TO CREATE A FOLDER CALLED images AT THE SAME LEVEL AS THIS SCRIPT AND PUT PNG IMAGES IN IT
 
 ; removes any delay after window command
-SetWinDelay, -1
+SetWinDelay, 0
 
 ; Initialize empty object for monitor information
 Monitors := Array()
@@ -35,11 +35,6 @@ else {
     monitor := Monitors[1]
 }
 
-; SplashImage, images\red.png, BW100H100, , , Frame1
-; WinGetPos, X, Y, , , ImageHandleFrame
-; WinMove, Frame1, , 100, 0
-; MsgBox, %X%, %Y%
-
 Directions := Array()
 
 for index, element in imageList {
@@ -71,15 +66,11 @@ Loop {
         
         if (Y <= monitor["top"]) or (Y + 100 >= monitor["bottom"])
             Directions[index]["y"] := Directions[index]["y"] * -1
-        ; MsgBox, %X%, %Y%
+
         WinMove, %index%, , X + direction["x"], Y + direction["y"]
+        ; Sleep, 1
     }
 }
-
-
-
-; WinMove, 1, , 0, 0
-; WinMove, 2, , 100, 500
 
 Return
 

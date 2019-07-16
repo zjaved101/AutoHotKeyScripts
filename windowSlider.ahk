@@ -15,9 +15,6 @@ Loop, %count% {
     Monitors.push({"left": workAreaLeft, "right": workAreaRight, "top": workAreaTop, "bottom": workAreaBottom})
 }
 
-; WinGetPos, X, Y, Width, Height, Task Manager
-; MsgBox, Task Manager at %X%, %Y%
-
 ^`::
 ; asks for which monitor only if it detects more than one
 if (count > 1) {

@@ -45,8 +45,8 @@ for index, element in imageList {
     SplashImage, %index%:%element%, BW100H100X%winX%Y%winY%, , , %index%
 
     ; Generate random direction for squares
-    Random, x, -1, 1
-    Random, y, -1, 1
+    Random, x, -10, 10
+    Random, y, -10, 10
 
     ; remove any 0 if random selected it
     if (x == 0) {

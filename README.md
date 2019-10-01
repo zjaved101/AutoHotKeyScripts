@@ -1,3 +1,3 @@
-# AutoHotKeyScripts
+# AutoHotKey Scripts
 
-Repository for autohotkey scripts
+Repository for fun (or useful) autohotkey scripts
